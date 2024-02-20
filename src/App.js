@@ -4,6 +4,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Signup from "./components/signup";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Login from './components/login';
 function App() {
   
   return (
@@ -13,7 +14,7 @@ function App() {
         <div className="auth-inner">
           <Routes>
             <Route exact path="/" element={<Signup />} />
-           
+            <Route exact path="/login" element={<Login />} />
           </Routes>
           </div>
           </div>
