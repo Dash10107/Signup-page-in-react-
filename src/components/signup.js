@@ -38,17 +38,24 @@ const handleSubmit = async (e) => {
     setToastOpen(true);
     return;
   }
+  if (password.length < 8) {
+    setSeverity("error");
+    setErrors({ error: "Password must be at least 8 characters long" });
+    setToastOpen(true);
+    return;
+  }
+  
   if(password!==password2){
     setSeverity("error")
     setErrors({error:"Please enter same passwords in both the fields"});
-    setToastOpen(true);
+    setToastOpen(true);     
     return;
   }
 
   try {
     // Send a POST request to the server
     const response = await axios.post(
-      "http://localhost:4000/users/register",
+      "https://hashing-backend.onrender.com/users/register",
       formData
     );
     console.log("Response", response)
@@ -88,6 +95,8 @@ const handleClose = (event, reason) => {
 
 return (
         <>
+                      <div className="auth-wrapper">
+        <div className="auth-inner">
     <form onSubmit={handleSubmit}>
     <h3 className=''>Sign Up</h3>
     <div className="mb-3">
@@ -118,7 +127,7 @@ return (
          className="form-control"
         type={showPassword ? "text" : "password"}
         name="password"
-        placeholder='Atleast 6 Characters'
+        placeholder='Atleast 8 Characters'
         value={password}
                 onChange={handleChange}
         endAdornment={
@@ -139,7 +148,7 @@ return (
          className="form-control"
         type={showPassword2 ? "text" : "password"}
         name="password2"
-        placeholder='Atleast 6 Characters'
+        placeholder='Atleast 8 Characters'
         value={password2}
                 onChange={handleChange}
         endAdornment={
@@ -175,6 +184,8 @@ return (
             </ul>
           </Alert>
         </Snackbar>
+        </div>
+        </div>
   </>
   )
 }

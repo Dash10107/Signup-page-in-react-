@@ -3,7 +3,7 @@
   box-sizing: border-box;
 }
 body {
-  background: #313131 !important;
+  background: #313131 ;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
