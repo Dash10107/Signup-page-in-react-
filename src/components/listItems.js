@@ -5,20 +5,24 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import axios from 'axios';
-import { IconButton, Paper, Snackbar, Typography } from '@mui/material';
+import { CircularProgress, IconButton, Paper, Snackbar, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import AddIcon from '@mui/icons-material/Add';
+import ModalComp from './AddModal';
 const MainListItems = (props) => {
     const {setSymbol} = props
     const token = localStorage.getItem('token');
+    const api = process.env.API;
     const [watchlist, setWatchlist] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-
+    const [modalOpen,setModalOpen] = useState(false);
     useEffect(() => {
         // Fetch user's watchlist from backend when component mounts
         fetchWatchlist();
+        console.log('API',api);
+        
       }, []);
     
       const fetchWatchlist = async () => {
@@ -30,6 +34,8 @@ const MainListItems = (props) => {
               Authorization: token // Include token in the request header
             }
           });
+          console.log('Response for watchlist',response);
+          
           setWatchlist(response.data.symbols);
           setLoading(false);
         } catch (error) {
@@ -63,7 +69,8 @@ const MainListItems = (props) => {
       <ListItemText primary="Watchlist" />
     </ListItemButton>
     {error && <Snackbar open={true} autoHideDuration={6000} message={error} />}
-        {watchlist.map((symbol) => (
+    {loading ? (<><CircularProgress/></>):(
+        watchlist.map((symbol) => (
             <ListItemButton onClick={()=>{setSymbol(symbol)}}>
           <ListItemIcon>
 
@@ -74,13 +81,15 @@ const MainListItems = (props) => {
               {/* Add icon for removing symbol */}<DeleteIcon/>
             </IconButton>
     </ListItemButton>
-        ))}
-        <ListItemButton>
+        ))
+        )}
+        <ListItemButton onClick={(e)=>{e.stopPropagation();e.preventDefault();setModalOpen(true);}}>
           <ListItemIcon>
       </ListItemIcon>
       <ListItemText  primary={<AddIcon/>}/>
      
     </ListItemButton>
+    <ModalComp setModalOpen={setModalOpen} modalOpen={modalOpen} watchlist={watchlist} fetchWatchlist={fetchWatchlist} />
   </React.Fragment>
   )
 }

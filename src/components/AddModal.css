@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200&display=swap');
+
+
+.modal-inputNew{
+    margin-left: 0.7vh;
+    display: block;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.7vh;
+    line-height: 2.2vh;
+    color: #000000;
+    background: #FFFFFF;
+    width: 22vw;
+    height: 4vh;
+    border: 2px solid #EDEDED;
+    border-radius: 10px;
+    margin-bottom: 2vh;
+    padding-left: 1vh;
+
+
+}
+.modal-inputNew :after{
+    border-bottom: none;
+
+    ::placeholder{
+        font-size: 1.7vh;
+        margin-left: 0.5rem;
+
+        
+    }
+
+}
+.modal-inputNew :hover{
+
+    border: 2px solid #4664F3;
+    box-shadow: 0px 6px 4px #B2BAFF;
+    border-radius: 10px;
+ 
+    position: relative;
+    left: -0.5vw;
+ 
+    padding-left: 0.5vw; 
+    margin-right: -0.5vw;
+   
+}
+.box{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: 1vw;
+ 
+}
+.nameaboveInput{
+    display: block;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.7vh;
+    line-height: 2.2vh;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+   
+}
+.btn-modal{
+    
+    width: 22vw;
+    text-align: center;
+    height: 5vh;
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.7vh;
+    line-height: 2.2vh;
+    /* identical to box height */
+    border-radius: 31px;
+    
+    /* Primary Blue */
+    vertical-align: middle;
+    color: #4664F3;
+    
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    z-index: 0;
+    margin-bottom: 2vh;
+}
+
+.animated-button {
+    border: 2px solid #4664F3;
+border-radius: 31px;
+    background-color: white;
+    color: #4664F3;
+   
+    font-size: 1.7vh;
+    line-height: 2.2vh;
+    font-weight: 500;
+    border-radius: 31px;
+    background-image: linear-gradient(
+      to right,
+      white 0%,
+      white 50%,
+      #4664F3 50%,
+      #4664F3 100%
+    );
+    background-size: 200% 100%;
+    transition: background-position 0.5s, color 0.5s;
+  }
+  
+  .animated-button.animated {
+    background-position: -100% 0;
+    color: white;
+  }
+
+  .animated-button.animated:hover {
+    color: white;
+  }
+
+  .ant-modal-footer {
+    text-align: center !important;
+    background: transparent;
+    margin-top: 12px;
+    text-align: center;
+    padding-bottom: 1vh;
+}
+
+ .ant-modal-title {
+    margin: 0;
+   
+    
+    word-wrap: break-word !important; 
+    padding-left: 1vw;
+    padding-top: 1.5vh;
+    font-family: 'Poppins' !important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 2vh !important;
+line-height: 3.3vh !important;
+/* identical to box height */
+
+
+color: #000000;
+}
+
+
+/* Responsive Typography */
+@media (max-width: 600px) {
+    .btn-modal {
+        width: 60vw;
+      font-size: 1.5vh; /* Adjust as needed */
+      line-height: 6vw; /* Adjust as needed */
+    }
+  }
+
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentColor;
+    /* padding: 4px 0 5px; */
+
+    border: 0;
+    box-sizing: content-box;
+    background: none;
+    height: 1.4375em;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+    min-width: 0;
+    width: 100%;
+    -webkit-animation-name: mui-auto-fill-cancel;
+    animation-name: mui-auto-fill-cancel;
+    -webkit-animation-duration: 10ms;
+    animation-duration: 10ms;
+}

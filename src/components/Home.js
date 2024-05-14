@@ -19,9 +19,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
  import MainListItems from './listItems';
 import Chart from './Chart';
-// import axios from 'axios';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
+import StockInfo from './StockInfo';
+import MoreInfo from './MoreInfo';
 
 function Copyright(props) {
   return (
@@ -92,19 +91,10 @@ export default function Home() {
 
 
   
-
+  useEffect(()=>{console.log('Symbol',symbol);
+  },[symbol])
   
-    // const refreshWatchlist = async () => {
-    //   setLoading(true);
-    //   try {
-    //     // Refresh watchlist by fetching latest stock values from Alpha Vantage API
-    //     // Make requests to Alpha Vantage API for each symbol in the watchlist
-    //     // Update watchlist with latest stock values
-    //   } catch (error) {
-    //     setError('Failed to refresh watchlist');
-    //     setLoading(false);
-    //   }
-    // };
+
   
     
   const [open, setOpen] = React.useState(true);
@@ -190,30 +180,21 @@ export default function Home() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 400,
                   }}
                 >
-                  <Chart />
+                  <Chart symbol={symbol} />
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
+            
               <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  {/* <Deposits /> */}
-                </Paper>
+                  <StockInfo symbol={symbol}/>
               </Grid>
-              {/* Recent Orders */}
+              
               <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  {/* <Orders /> */}
-                </Paper>
+               
+                 <MoreInfo symbol={symbol}/>
+                
               </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />
