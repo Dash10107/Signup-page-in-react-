@@ -21,6 +21,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Chart from './Chart';
 import StockInfo from './StockInfo';
 import MoreInfo from './MoreInfo';
+import NotificationMenu from './ProfileMenu';
 
 function Copyright(props) {
   return (
@@ -135,7 +136,7 @@ export default function Home() {
             </Typography>
             <IconButton color="inherit">
               <Badge  color="secondary">
-                <NotificationsIcon />
+                <NotificationMenu/>{/* <NotificationsIcon /> */}
               </Badge>
             </IconButton>
           </Toolbar>
