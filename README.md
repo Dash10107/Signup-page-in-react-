@@ -1,24 +1,25 @@
-Stocks Watchlist Application 
+Stocks Watchlist Application : https://watchlist-frontend-taupe.vercel.app/
 
-this first lets you signup or login into the application 
 
-Then it takes you to dashboard where you can add,delete and manage your personal watchlist 
+this first lets you sign or log into the application 
 
-As soon as you select any stock on the list , it will show you the intraday prices for the stock by using the API - www.alphavantage.co
+Then it takes you to the dashboard where you can add, delete, and manage your watchlist 
 
-You can see stock price for last 5,15,30 or 60 mins in intraday. 
+As soon as you select any stock on the list, it will show you the intraday prices for the stock by using the API - www.alphavantage.co
 
-This is built in React and MUI . It uses react-router-dom for Navigation 
+You can see stock prices for the last 5,15,30 or 60 mins in intraday. 
 
-It uses token to differentiate users.
+This is built in React and MUI. It uses react-router-dom for Navigation 
 
-The API for signup , login and managing watchlist is a seperate Nodejs API along with MongoDB database. 
+It uses tokens to differentiate users.
+
+The API for signup, login, and managing the watchlist is a separate Nodejs API along with the MongoDB database. 
 
 The API Code is in this repository => https://github.com/Dash10107/Watchlist-Backend/
 
 It also fulfils these requirements as well 
 
-The platform should allow users to create and manage their own watchlists of stock symbols
+The platform should allow users to create and manage their watchlists of stock symbols
 (e.g., MSFT, GOOG).
 • The platform should display a dashboard with the latest stock values of the symbols on the
 user’s watchlist.
