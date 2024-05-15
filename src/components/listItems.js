@@ -11,25 +11,23 @@ import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import AddIcon from '@mui/icons-material/Add';
 import ModalComp from './AddModal';
 const MainListItems = (props) => {
+  const api = process.env.REACT_APP_API
     const {setSymbol} = props
     const token = localStorage.getItem('token');
-    const api = process.env.API;
     const [watchlist, setWatchlist] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [modalOpen,setModalOpen] = useState(false);
     useEffect(() => {
         // Fetch user's watchlist from backend when component mounts
-        fetchWatchlist();
-        console.log('API',api);
-        
+        fetchWatchlist();        
       }, []);
     
       const fetchWatchlist = async () => {
         setLoading(true);
         try {
           // Make request to backend to fetch user's watchlist
-          const response = await axios.get('https://hashing-backend.onrender.com/watchlists',{
+          const response = await axios.get(`${api}/watchlists`,{
             headers: {
               Authorization: token // Include token in the request header
             }
@@ -48,7 +46,7 @@ const MainListItems = (props) => {
         setLoading(true);
         try {
           // Make request to backend to remove symbol from watchlist
-          await axios.delete(`https://hashing-backend.onrender.com/watchlists/${symbol}`,{
+          await axios.delete(`${api}/watchlists/${symbol}`,{
             headers: {
               Authorization: token // Include token in the request header
             }
@@ -70,8 +68,8 @@ const MainListItems = (props) => {
     </ListItemButton>
     {error && <Snackbar open={true} autoHideDuration={6000} message={error} />}
     {loading ? (<><CircularProgress/></>):(
-        watchlist.map((symbol) => (
-            <ListItemButton onClick={()=>{setSymbol(symbol)}}>
+        watchlist.map((symbol,ind) => (
+            <ListItemButton key={ind} onClick={()=>{setSymbol(symbol)}}>
           <ListItemIcon>
 
         <LabelImportantIcon />

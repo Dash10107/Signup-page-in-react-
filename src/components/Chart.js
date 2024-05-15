@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import Title from "./Title";
 import axios from "axios";
-import { Button, Grid, Zoom } from "@mui/material";
+import { Button, Grid, Typography, Zoom } from "@mui/material";
 
 const intervals = [
   { label: "1 min", value: "1min" },
@@ -22,21 +22,21 @@ const intervals = [
 ];
 
 export default function Chart({ symbol }) {
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState(null);
   const [selectedInterval, setSelectedInterval] = useState("5min");
-
+  const apiKey = process.env.REACT_APP_API_KEY;
   const fetchData = async () => {
     if (symbol === "") {
       return;
     }
 
-    // const key = "N1Q5R8UFQVH2VL4P";
+    
     const response = await axios.get(
-      `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=demo`
+      `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${selectedInterval}&apikey=${apiKey}`
     );
     console.log("Response", response);
 
-    const timeSeriesData = response.data["Time Series (5min)"];
+    const timeSeriesData = response.data[`Time Series (${selectedInterval})`];
     // const timeSeriesData = tempData;
     const formattedData = Object.keys(timeSeriesData).map((timestamp) => {
       const dataPoint = timeSeriesData[timestamp];
@@ -69,6 +69,7 @@ export default function Chart({ symbol }) {
   }, [symbol]);
 
   useEffect(() => {
+    setChartData(null)
     fetchData();
   }, [selectedInterval]);
 
@@ -79,6 +80,7 @@ export default function Chart({ symbol }) {
 
   return (
     <React.Fragment>
+     {chartData!==null ? <>
       <Title>{symbol} </Title>
       <Grid
         container
@@ -99,7 +101,7 @@ export default function Chart({ symbol }) {
         ))}
       </Grid>
       <div style={{ width: "100%", flexGrow: 1, overflow: "hidden" }}>
-        <ResponsiveContainer width="100%" height={280}>
+       <ResponsiveContainer width="100%" height={280}>
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <YAxis
@@ -153,7 +155,8 @@ export default function Chart({ symbol }) {
             {/* <Zoom />                 */}
           </LineChart>
         </ResponsiveContainer>
-      </div>
+      </div></>
+      :<Typography>Please Select Any Stock...</Typography>}
     </React.Fragment>
   );
 }

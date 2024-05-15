@@ -2,18 +2,8 @@ import { Paper, Typography } from '@mui/material'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-const StockInfo = ({symbol}) => {
-    const [stockInfo,setStockInfo] = useState();
-    useEffect(()=>{
-        const fetchInfo = async()=>{
-            const response = await axios.get("https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo");
-            console.log('Response',response);
-            setStockInfo(response.data);
-        }   
+const StockInfo = ({symbol,stockInfo}) => {
 
-        fetchInfo();
-        
-    },[symbol])
 
   return (
     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 400 }}>
@@ -31,7 +21,7 @@ const StockInfo = ({symbol}) => {
           <Typography variant="subtitle1">Forward PE Ratio: {stockInfo.ForwardPE}</Typography>
       </React.Fragment>
     ) : (
-      <Typography variant="body1">Loading stock information...</Typography>
+      <Typography variant="body1">Please Select Any Stock...</Typography>
     )}
   </Paper>
   )

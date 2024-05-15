@@ -22,6 +22,7 @@ import Chart from './Chart';
 import StockInfo from './StockInfo';
 import MoreInfo from './MoreInfo';
 import NotificationMenu from './ProfileMenu';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -85,23 +86,38 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Home() {
+export default function Home({checkAuthentication}) {
+  const apiKey = process.env.REACT_APP_API_KEY;
 
-
-    const [symbol,setSymbol] = useState('');
-
-
-  
-  useEffect(()=>{console.log('Symbol',symbol);
-  },[symbol])
-  
-
-  
+    const [symbol,setSymbol] = useState(''); 
     
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+
+  const [stockInfo,setStockInfo] = useState();
+  useEffect(()=>{
+      const fetchInfo = async()=>{
+        if (symbol === "") {
+          return;
+        }
+        try {
+          const response = await axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`);
+          console.log('Response',response);
+            setStockInfo(response.data);
+          
+        } catch (error) {
+          console.log('Error',error);
+          
+        }
+
+      }   
+
+      fetchInfo();
+      
+  },[symbol])
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -136,7 +152,7 @@ export default function Home() {
             </Typography>
             <IconButton color="inherit">
               <Badge  color="secondary">
-                <NotificationMenu/>{/* <NotificationsIcon /> */}
+                <NotificationMenu checkAuthentication={checkAuthentication}/>{/* <NotificationsIcon /> */}
               </Badge>
             </IconButton>
           </Toolbar>
@@ -189,12 +205,12 @@ export default function Home() {
               </Grid>
             
               <Grid item xs={12} md={4} lg={3}>
-                  <StockInfo symbol={symbol}/>
+              <StockInfo symbol={symbol} stockInfo={stockInfo}/>
               </Grid>
               
               <Grid item xs={12}>
                
-                 <MoreInfo symbol={symbol}/>
+                 <MoreInfo symbol={symbol} stockInfo={stockInfo}/>
                 
               </Grid>
             </Grid>

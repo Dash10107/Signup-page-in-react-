@@ -76,6 +76,8 @@ export default function Signup() {
       password: data.get('password'),
       password2:data.get('password2')
     };
+    console.log('request',requestData);
+    
     try {
       // Send a POST request to the server
       const response = await axios.post(
@@ -94,7 +96,7 @@ export default function Signup() {
     } catch (error) {
       // If there's an error, handle it here
       console.error("Registration error", error);
-      setErrors(error);
+      setErrors({error});
       setToastOpen(true);
   
     }

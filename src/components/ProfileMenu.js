@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Menu, MenuItem, IconButton, Badge, Typography } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Link } from 'react-router-dom';
 
-export default function NotificationMenu() {
+export default function NotificationMenu({checkAuthentication}) {
   const [anchorEl, setAnchorEl] = useState(null);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+    localStorage.removeItem("token");
+    checkAuthentication();
   };
 
   return (
@@ -37,7 +37,7 @@ export default function NotificationMenu() {
         {/* <MenuItem component={Link} to="/profile" onClick={handleClose}>
           Profile
         </MenuItem> */}
-        <MenuItem component={Link} to="/login" onClick={handleClose}>
+        <MenuItem  onClick={handleClose}>
         <Typography> Logout</Typography> 
         </MenuItem>
       </Menu>

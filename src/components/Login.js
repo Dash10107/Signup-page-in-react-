@@ -32,7 +32,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({checkAuthentication}) {
     const navigate = useNavigate();
     const [severity,setSeverity] = useState("error")
     const [errors, setErrors] = useState({});
@@ -75,7 +75,7 @@ export default function SignIn() {
      
            // If the registration is successful, you can handle the response here
            localStorage.setItem("token",response?.data?.token);
-           navigate("/home");
+           checkAuthentication();
      
      
          } else { console.log(response.status) }
