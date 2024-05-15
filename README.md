@@ -1,5 +1,5 @@
 Stocks Watchlist Application: https://watchlist-frontend-taupe.vercel.app/
-
+Video Walkthrough of The APP : [screen-capture.webm](https://github.com/Dash10107/Watchlist-Frontend/assets/97282628/4b552892-8433-4326-ac83-27dce97118bd)
 
 this first lets you sign or log into the application 
 
@@ -31,6 +31,8 @@ user and watchlist data.
 • The platform should use https://www.alphavantage.co as an API to pull stock information. The
 dashboard should show the latest stock price as returned by the TIME_SERIES_INTRADAY
 endpoint
-[screen-capture.webm](https://github.com/Dash10107/Watchlist-Frontend/assets/97282628/4b552892-8433-4326-ac83-27dce97118bd)
+
+
+
 
 
